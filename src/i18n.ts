@@ -17,7 +17,14 @@ const resources = {
             "passwordMismatch": "Passwords do not match",
             "registrationSuccess": "Registration successful!",
             "somethingWentWrong": "Something went wrong. Please try again.",
-            loginSuccess: "Logged In successfully"
+            loginSuccess: "Logged In successfully",
+            totalCustomers: "Total Customers",
+            totalBills: "Total Bills",
+            pendingBills: "Pending Bills",
+            totalRevenue: "Total Revenue",
+            recentCustomers: "Recent Customers",
+            recentBills: "Recent Bills"
+
         },
     },
     fr: {
