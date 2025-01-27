@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Register: React.FC = () => {
   const { t } = useTranslation(); // Hook for translations
@@ -10,19 +13,44 @@ const Register: React.FC = () => {
     confirmPassword: "",
   });
 
+  const [error, setError] = useState<string | null>(null);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+  
+    // Confirm password validation
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
+      setError(t("passwordMismatch")); // e.g., "Passwords do not match"
       return;
     }
-    console.log("Register form submitted", formData);
+  
+    try {
+      // Call the backend API to register
+      const response = await axios.post("http://localhost:5000/api/auth/register", {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+      });
+  
+      // Success message or redirect logic
+
+      toast.success(response?.data?.message);
+    
+    } catch (err: any) {
+      // Handle API errors
+      const message = err.response?.data?.message || t("somethingWentWrong");
+      setError(message);
+      console.error("Registration Failed:", message);
+    }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-800">
@@ -30,6 +58,11 @@ const Register: React.FC = () => {
         <h2 className="text-xl font-semibold text-center mb-4 text-gray-900 dark:text-white">
           {t("register")}
         </h2>
+
+        {error && (
+          <p className="mb-4 text-sm text-red-500 text-center">{error}</p>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">

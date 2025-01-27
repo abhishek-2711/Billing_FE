@@ -13,6 +13,11 @@ const resources = {
             username: "Username",
             alreadyHaveAccount: "Already have an account?",
             dontHaveAccount: "Don’t have an account?",
+            "confirmPassword": "Confirm Password",
+            "passwordMismatch": "Passwords do not match",
+            "registrationSuccess": "Registration successful!",
+            "somethingWentWrong": "Something went wrong. Please try again.",
+            loginSuccess: "Logged In successfully"
         },
     },
     fr: {

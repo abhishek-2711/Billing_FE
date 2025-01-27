@@ -3,6 +3,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import "./i18n"; // Import the i18n configuration
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 
 // Theme initialization
 const initializeTheme = () => {
@@ -23,5 +26,6 @@ initializeTheme(); // Call the function before rendering the app
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
+    <ToastContainer />
   </React.StrictMode>
 );
