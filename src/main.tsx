@@ -24,8 +24,9 @@ const initializeTheme = () => {
 initializeTheme(); // Call the function before rendering the app
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+<>
     <App />
     <ToastContainer />
-  </React.StrictMode>
+    </>
+
 );

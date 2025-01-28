@@ -41,8 +41,10 @@ const Login: React.FC<LoginProps> = ({setAuthToken}) => {
       })
       console.log("Logged in Data " + response.data)
       const token = response.data.token;
-      localStorage.setItem("authToken", token);
+      const clientId = response.data.clientId;
       setAuthToken(token); // Update state in App.tsx
+      localStorage.setItem("authToken", token);
+      localStorage.setItem("clientId", clientId );
       toast.success(response?.data?.message);
       navigate("/dashboard");
     }
